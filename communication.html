@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Farmer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin-top: 40px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contact Farmer</h1>
+
+        <form method="post" action="communication.php">
+            <div class="form-group">
+            <input type="hidden" name="farmer_id" value="<?php echo $_SESSION['farmer_id']; ?>">
+            <textarea name="message"></textarea>
+            <button type="submit">Send Message</button>
+            </div>
+        </form>
+        
+
+        <br>
+        <button id="viewFarmerDetails" class="btn btn-info">View Farmer Details</button>
+        <div id="farmerDetails" style="margin-top: 20px;">
+            <!-- Farmer details will be displayed here -->
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#viewFarmerDetails').click(function() {
+                $.ajax({
+                    url: 'fetch_farmer_details.php', // Your backend script to fetch farmer details
+                    method: 'POST',
+                    success: function(response) {
+                        $('#farmerDetails').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', status, error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

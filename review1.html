@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macadamia Marketplace - Review</title>
+</head>
+<body>
+  <?php
+  // Check if user is logged in and a buyer (place this at the beginning)
+  if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != "buyer") {
+    echo "Unauthorized access. Please login as a buyer.";
+    exit();
+  }
+
+  // Access farmer details and listing information based on listing ID (replace with your logic)
+  $listing_id = (int) $_GET['listing_id'];
+  $farmer_details = get_farmer_details_from_listing_id($conn, $listing_id);
+  $listing_info = get_listing_details($conn, $listing_id); // Replace with your function
+
+  if (!$farmer_details || !$listing_info) {
+    echo "Error: Could not retrieve details for this review.";
+    exit();
+  }
+  ?>
+
+  <h1>Leave a Review for <?php echo $farmer_details['name']; ?></h1>
+
+  <p>You are reviewing your purchase of <?php echo $listing_info['variety']; ?> macadamia nuts (<?php echo $listing_info['quantity']; ?> Kg) from <?php echo $farmer_details['farm_name']; ?>.</p>
+
+  <?php
+  // Check if buyer has already reviewed this listing (optional)
+  if (!has_reviewed_listing($conn, $_SESSION['user_id'], $listing_id)) { // Replace with your function
+  ?>
+  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <label for="rating">Rating (1-5):</label>
+    <select name="rating" id="rating">
+      <option value="1">1 Star</option>
+      <option value="2">2 Stars</option>
+      <option value="3">3 Stars</option>
+      <option value="4">4 Stars</option>
+      <option value="5">5 Stars</option>
+    </select>
+    <br>
+    <label for="review">Review:</label>
+    <textarea name="review" id="review"></textarea>
+    <br>
+
+    <p>**Note:** To complete your purchase, please proceed to payment.</p>
+    <button type="button" disabled>Pay with Paybill (Integration in progress)</button><br><br>
+
+    <button type="submit" name="submit_review" disabled>Submit Review (Payment Required)</button>
+  </form>
+  <?php } else {
+    echo "<p>You have already reviewed this listing.</p>";
+  } ?>
+
+  <?php
+  // Display existing reviews for this farmer (optional)
+  $reviews = get_farmer_reviews($conn, $farmer_details['farmer_id']); // Replace with your function
+  if ($reviews) {
+    echo "<h2>Previous Reviews</h2>";
+    foreach ($reviews as $review) {
+      echo "<p>" . $review['username'] . " (" . $review['rating'] . " stars): " . $review['review'] . "</p>";
+    }
+  } else {
+    echo "<p>No reviews available yet.</p>";
+  }
+  ?>
+
+  <?php
+  // Handle form submission for leaving a review
+  if (isset($_POST['submit_review'])) {
+    $rating = (int) $_POST['rating'];
+    $review = $_POST['review'];
+
+    // Implement logic to store review in database for this buyer, listing, and farmer
+    // ... your review storage logic ...
+
+    if (review_submitted_successfully()) { // Replace with your success check
+      echo "<p class='alert alert-success'>Review submitted successfully!</p>";
+      // Enable payment button and review submission button after successful review submission
+      echo "<script>document.querySelectorAll('button[disabled]').forEach(button => button.disabled = false);</script>";
+    } else {
+      echo "<p class='alert alert-danger'>Error submitting review. Please try again.</p>";
+    }
+  }
+  ?>
+
+</body>
+</html>

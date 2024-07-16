@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macadamia Marketplace</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Header Styling */
+        .header {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .h1 {
+            color: #333;
+            margin-bottom: 0;
+        }
+
+        .nav-link {
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        .h2 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        .card-body {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .btn {
+            margin-top: 1rem;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <header class="container-fluid header d-flex justify-content-between align-items-center">
+        <h1 class="display-4">Macadamia Marketing System</h1>
+        <nav class="nav">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link" href="homepage.html">About Us</a>
+            <a class="nav-link" href="">Contact</a>
+        </nav>
+    </header>
+
+    <main class="container main-content">
+        <div class="card">
+            <img src="tr.jpeg" class="card-img-top" alt="Macadamia Nuts">
+            <div class="card-body">
+                <h2 class="card-title">What is Macadamia?</h2>
+                <p class="card-text">
+                    Macadamia nuts are rich, buttery nuts that are native to Australia but are also grown in various other countries. They are renowned for their high nutritional value, offering a good source of healthy fats, vitamins, and minerals. Macadamias are often used in a variety of culinary dishes, including baked goods, desserts, and as a crunchy addition to salads and other meals.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <img src="th.jpeg" class="card-img-top" alt="Macadamia Nuts">
+                    <div class="card-body">
+                        <h2 class="card-title">For Buyers</h2>
+                        <p class="card-text">Find high-quality macadamia nuts for your business needs. Browse listings from macadamia farmers across the country.</p>
+                        <a href="buyerregistration.html" class="btn btn-success">Register as Buyer</a>
+                        <a href="login_buyer.html" class="btn btn-outline-success">Login (Existing Buyers)</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <img src="OIP.jpeg" class="card-img-top" alt="Macadamia Nuts">
+                    <div class="card-body">
+                        <h2 class="card-title">For Farmers</h2>
+                        <p class="card-text">Market your produce and grow your business. List your macadamia farm and connect with potential buyers.</p>
+                        <a href="farmerregistration.html" class="btn btn-primary">Register as Farmer</a>
+                        <a href="login_farmer.html" class="btn btn-outline-primary">Login (Existing Farmers)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

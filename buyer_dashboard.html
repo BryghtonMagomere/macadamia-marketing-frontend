@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macadamia Marketplace - Buyer Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+        h3 {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Buyer Dashboard</h1>
+
+    <h3>Search for Macadamia Listings</h3>
+    <form action="buyer_dashboard.php" method="post">
+      <label for="variety">Variety (optional):</label>
+      <input type="text" name="variety" id="variety">
+      <br>
+      <label for="location">Location (optional):</label>
+      <input type="text" name="location" id="location">
+      <br>
+      <label for="min_price">Minimum Price (per Kg):</label>
+      <input type="number" step="0.01" name="min_price" id="min_price" min="0">
+      <br>
+      <label for="max_price">Maximum Price (per Kg):</label>
+      <input type="number" step="0.01" name="max_price" id="max_price" min="0">
+      <br>
+      <label for="quantity">Minimum Quantity (Kg):</label>
+      <input type="number" name="quantity" id="quantity" min="1">
+      <br>
+      <label for="sort_by">Sort By:</label>
+      <select name="sort_by" id="sort_by">
+        <option value="price">Price</option>
+        <option value="quantity">Quantity</option>
+        <option value="variety">Variety</option>
+        <option value="quality">Quality</option>
+      </select>
+      <br>
+      <label for="sort_direction">Sort Direction:</label>
+      <select name="sort_direction" id="sort_direction">
+        <option value="ASC">Ascending</option>
+        <option value="DESC">Descending</option>
+      </select>
+      <br>
+      <button type="submit">Search Listings</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macadamia Marketplace - Contact Farmer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: none;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Contact Farmer</h1>
+
+    <?php
+    // Include database connection file (replace 'db_config.php' with your actual file)
+    require_once 'db_config.php';
+
+    // Get farmer ID from URL parameter (assuming farmer ID is passed in the URL)
+    $farmer_id = isset($_GET['farmer_id']) ? (int)$_GET['farmer_id'] : null;
+
+    // Check if farmer ID is provided
+    if ($farmer_id === null) {
+      echo "<p>Error: No farmer ID provided.</p>";
+    } else {
+      // Check if user is logged in (optional, replace with your logic)
+      // If not logged in, display a message or redirect to login page
+      if (!isLoggedIn()) {
+        echo "<p>Please log in to contact a farmer.</p>";
+        // You can redirect to login page here:
+        // echo "<a href='login.php'>Login</a>";
+        exit();
+      }
+
+      // Get logged-in user ID (replace with your logic)
+      $buyer_id = getLoggedInUserId();
+
+      // Display form to send message
+      echo "<form action='send_message.php' method='post'>";
+      echo "<input type='hidden' name='farmer_id' value='$farmer_id'>";
+      echo "<label for='message'>Message:</label>";
+      echo "<textarea name='message' id='message' rows='5' required></textarea>";
+      echo "<br>";
+      echo "<button type='submit'>Send Message</button>";
+      echo "</form>";
+    }
+    ?>
+
+  </div>
+</body>
+</html>
